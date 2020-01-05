@@ -22,22 +22,10 @@ public class Order {
 		return client;
 	}
 
-	public void setClient(User client) {
-		this.client = client;
-	}
-
 	public HashMap<Product, Integer> getOrderList() {
 		return orderList;
 	}
 
-	public void setOrderList(HashMap<Product, Integer> orderList) {
-		this.orderList = orderList;
-	}
-	
-	public void addProduct(Product product, int quantity) {
-		orderList.put(product, quantity);
-	}
-	
 	public void processOrder(PaymentStrategy strategy) {
 		strategy.getPaymentData();
 	}
