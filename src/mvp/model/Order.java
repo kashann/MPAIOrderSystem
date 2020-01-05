@@ -24,35 +24,16 @@ public class Order {
 		return client;
 	}
 
-	public void setClient(User client) {
-		this.client = client;
-	}
-
 	public HashMap<Product, Integer> getOrderList() {
 		return orderList;
-	}
-
-	public void setOrderList(HashMap<Product, Integer> orderList) {
-		this.orderList = orderList;
 	}
 
 	public EPayment getPaymentMethod() {
 		return paymentMethod;
 	}
-
-	public void setPaymentMethod(EPayment paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-
+	
 	public EDelivery getDeliveryMethod() {
 		return deliveryMethod;
 	}
 
-	public void setDeliveryMethod(EDelivery deliveryMethod) {
-		this.deliveryMethod = deliveryMethod;
-	}
-	
-	public void addProduct(Product product, int quantity) {
-		orderList.put(product, quantity);
-	}
 }
