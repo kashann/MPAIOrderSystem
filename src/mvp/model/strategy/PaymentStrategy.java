@@ -1,4 +1,4 @@
-package mvp.strategy;
+package mvp.model.strategy;
 
 public interface PaymentStrategy {
 

@@ -1,4 +1,4 @@
-package mvp.strategy;
+package mvp.model.strategy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
