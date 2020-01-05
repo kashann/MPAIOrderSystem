@@ -4,11 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import mvp.model.CreditCard;
+
 public class CreditCardPayment implements PaymentStrategy {
 	
-	String cardNumber;
-	String expiringMonth;
-	String cvv;
+	private String cardNumber;
+	private String cardHolder;
+	private String expiringMonth;
+	private String expiringYear;
+	private String cvv;
+	private CreditCard card;
+	
 	private final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
 
 	@Override
@@ -22,10 +28,20 @@ public class CreditCardPayment implements PaymentStrategy {
         try {
     		System.out.print("Enter credit card number: ");
 			cardNumber = READER.readLine();
-	        System.out.print("Enter the expire month ");
+			System.out.print("Enter card holder: ");
+			cardHolder = READER.readLine();
+	        System.out.print("Enter the expiring month ");
 	        expiringMonth = READER.readLine();
+	        System.out.print("Enter the expiring year ");
+	        expiringYear = READER.readLine();
 	        System.out.print("Enter the CVV code: ");
             cvv = READER.readLine();
+            
+            card = new CreditCard(Long.valueOf(cardNumber),
+            		cardHolder, Integer.valueOf(expiringMonth), 
+            		Integer.valueOf(expiringYear),
+                    Integer.valueOf(cvv));
+            
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
