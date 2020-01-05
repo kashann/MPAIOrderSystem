@@ -39,7 +39,7 @@ public class OrderBuilder {
 	}
 	
 	public Order getOrder() {
-		Order order = new Order(client, orderList, paymentMethod, deliveryMethod);
+		Order order = new Order(client, orderList);
 		return order;
 	}
 }
