@@ -2,6 +2,8 @@ package mvp.presenter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import mvp.model.Angajat;
 import mvp.model.Order;

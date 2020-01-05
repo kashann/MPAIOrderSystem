@@ -4,16 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
 
 import mvp.model.EBrand;
 import mvp.model.EComputerType;
@@ -26,7 +29,7 @@ public class ViewClass implements IView {
 	public JLabel brandLabel, typeLabel;
 	public JComboBox<EBrand> brand;
 	public JComboBox<EComputerType> type;
-	public JTextField quantity;
+	public JFormattedTextField quantity;
 	public JButton addProduct;
 	public JTextArea order;
 	public JScrollPane scroll;
@@ -34,7 +37,7 @@ public class ViewClass implements IView {
 	public JComboBox<EPayment> payment;
 	public JComboBox<EDelivery> delivery;
 	public JButton sendOrder;
-	private ArrayList<OrderItem> orderList;
+	private ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();
 	
 	public ViewClass() {
 		JPanel productArea = new JPanel();
@@ -42,9 +45,15 @@ public class ViewClass implements IView {
 		brand = new JComboBox<EBrand>(EBrand.values());
 		typeLabel = new JLabel("Type");
 		type = new JComboBox<EComputerType>(EComputerType.values());
-		quantity = new JTextField();
+		NumberFormat format = NumberFormat.getInstance();
+	    NumberFormatter formatter = new NumberFormatter(format);
+	    formatter.setValueClass(Integer.class);
+	    formatter.setMinimum(1);
+	    formatter.setMaximum(Integer.MAX_VALUE);
+	    formatter.setAllowsInvalid(false);	    
+	    formatter.setCommitsOnValidEdit(true); // If you want the value to be committed on each keystroke instead of focus lost
+		quantity = new JFormattedTextField(formatter);
 		quantity.setPreferredSize(new Dimension(50, 25));
-		//quantity. //numeric validation
 		addProduct = new JButton("Add Product");
 		productArea.add(brandLabel);
 		productArea.add(brand);
@@ -80,11 +89,13 @@ public class ViewClass implements IView {
 	}
 
 	public void addProduct() {
+		if(quantity.getText().isEmpty())
+			return;
 		order.append(quantity.getText() + "X - " + brand.getSelectedItem() + " " + type.getSelectedItem() + "\n");
 		Product product = new Product(EBrand.valueOf(brand.getSelectedItem().toString()), 
 				EComputerType.valueOf(type.getSelectedItem().toString()), 10);
 		OrderItem item = new OrderItem(product , Integer.parseInt(quantity.getText()));
-		orderList.add(item); //null pointer exception?????????????
+		orderList.add(item);
 	}
 	
 	public void submit() {
