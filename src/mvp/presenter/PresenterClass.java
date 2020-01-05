@@ -37,13 +37,8 @@ public class PresenterClass {
 		view.addProduct.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				view.refreshUI();
-			}
-		});
-		view.addProduct.addActionListener(new ActionListener() {			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
 				view.addProduct();
+				view.refreshUI();
 			}
 		});
 		view.btnSubmit.addActionListener(new ActionListener() {			
