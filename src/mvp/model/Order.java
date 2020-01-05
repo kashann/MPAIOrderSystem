@@ -1,18 +1,18 @@
 package mvp.model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import mvp.model.strategy.PaymentStrategy;
 
 public class Order {
 	private User client;
-	private HashMap<Product, Integer> orderList;
+	private ArrayList<OrderItem> orderList;
 	
 	public Order() {
-		orderList = new HashMap<Product, Integer>();
+		orderList = new ArrayList<OrderItem>();
 	}
 	
-	public Order(User client, HashMap<Product, Integer> orderList) {
+	public Order(User client, ArrayList<OrderItem> orderList) {
 		super();
 		this.client = client;
 		this.orderList = orderList;
@@ -22,7 +22,7 @@ public class Order {
 		return client;
 	}
 
-	public HashMap<Product, Integer> getOrderList() {
+	public ArrayList<OrderItem> getOrderList() {
 		return orderList;
 	}
 

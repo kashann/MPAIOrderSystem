@@ -1,17 +1,18 @@
 package mvp.model.order_builder;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import mvp.model.Order;
+import mvp.model.OrderItem;
 import mvp.model.Product;
 import mvp.model.User;
 
 public class OrderBuilder {
 	private User client;
-	private HashMap<Product, Integer> orderList;
+	private ArrayList<OrderItem> orderList;
 	
 	public OrderBuilder() {
-		this.orderList = new HashMap<Product, Integer>();
+		this.orderList = new ArrayList<OrderItem>();
 	}
 	
 	public OrderBuilder from(User client) {
@@ -20,7 +21,7 @@ public class OrderBuilder {
 	}
 	
 	public OrderBuilder addProduct(Product product, int quantity) {
-		this.orderList.put(product,  quantity);
+		this.orderList.add(new OrderItem(product, quantity));
 		return this;
 	}
 	

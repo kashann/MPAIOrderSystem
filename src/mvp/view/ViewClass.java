@@ -74,4 +74,15 @@ public class ViewClass implements IView {
 	public void addProduct() {
 		order.append(quantity.getText() + "X - " + brand.getSelectedItem() + " " + type.getSelectedItem() + "\n");
 	}
+	
+	public void submit() {
+		JFrame f = new JFrame("Order Checkout");
+		f.getContentPane().setLayout(new BorderLayout());
+		f.setPreferredSize(new Dimension(600, 200));
+
+		
+		f.setMinimumSize(new Dimension(350, 100));
+		f.pack();
+		f.setVisible(true);
+	}
 }
