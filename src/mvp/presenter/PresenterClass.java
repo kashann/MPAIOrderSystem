@@ -34,7 +34,7 @@ public class PresenterClass {
 	}
 	
 	public void btnAddListner() {
-		view.btn.addActionListener(new ActionListener() {			
+		view.btnSubmit.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//angajat.setSalary(Integer.parseInt(view.tf2.getText()));
