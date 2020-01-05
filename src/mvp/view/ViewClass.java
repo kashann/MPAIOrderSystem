@@ -46,7 +46,7 @@ public class ViewClass implements IView {
 		productArea.add(addProduct);
 
 		JPanel orderSummary = new JPanel();
-		order = new JTextArea();
+		order = new JTextArea(); //size
 		order.setEditable(false);
 		//scroll = new JScrollPane(order);
 		orderSummary.add(order, BorderLayout.PAGE_START);
@@ -57,7 +57,7 @@ public class ViewClass implements IView {
 		
 		JFrame f = new JFrame("Online Order System");
 		f.getContentPane().setLayout(new BorderLayout());
-		f.setPreferredSize(new Dimension(500, 200));
+		f.setPreferredSize(new Dimension(600, 200));
 		f.add(productArea, BorderLayout.NORTH);
 		f.add(orderSummary, BorderLayout.CENTER);
 		f.add(submitArea, BorderLayout.SOUTH);

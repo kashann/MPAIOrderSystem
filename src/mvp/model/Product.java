@@ -1,30 +1,14 @@
 package mvp.model;
 
 public class Product {
-	private String name;
-	private double price;
 	private EBrand brand;
+	private EComputerType type;
+	private double price;
 	
-	public Product(String name, double price, EBrand brand) {
+	public Product(EBrand brand, EComputerType type, double price) {
 		super();
-		this.name = name;
-		this.price = price;
 		this.brand = brand;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
+		this.type = type;
 		this.price = price;
 	}
 
@@ -34,5 +18,21 @@ public class Product {
 
 	public void setBrand(EBrand brand) {
 		this.brand = brand;
-	}	
+	}
+
+	public EComputerType getType() {
+		return type;
+	}
+
+	public void setType(EComputerType type) {
+		this.type = type;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 }
