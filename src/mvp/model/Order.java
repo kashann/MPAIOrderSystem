@@ -2,22 +2,20 @@ package mvp.model;
 
 import java.util.HashMap;
 
+import mvp.model.strategy.PaymentStrategy;
+
 public class Order {
 	private User client;
 	private HashMap<Product, Integer> orderList;
-	private EPayment paymentMethod; //transformam in interfata
-	private EDelivery deliveryMethod; //transformam in interfata
 	
 	public Order() {
 		orderList = new HashMap<Product, Integer>();
 	}
 	
-	public Order(User client, HashMap<Product, Integer> orderList, EPayment paymentMethod, EDelivery deliveryMethod) {
+	public Order(User client, HashMap<Product, Integer> orderList) {
 		super();
 		this.client = client;
 		this.orderList = orderList;
-		this.paymentMethod = paymentMethod;
-		this.deliveryMethod = deliveryMethod;
 	}
 
 	public User getClient() {
@@ -28,12 +26,7 @@ public class Order {
 		return orderList;
 	}
 
-	public EPayment getPaymentMethod() {
-		return paymentMethod;
+	public void processOrder(PaymentStrategy strategy) {
+		strategy.getPaymentData();
 	}
-	
-	public EDelivery getDeliveryMethod() {
-		return deliveryMethod;
-	}
-
 }
