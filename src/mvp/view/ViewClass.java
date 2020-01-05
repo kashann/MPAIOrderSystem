@@ -76,7 +76,6 @@ public class ViewClass implements IView {
 
 	@Override
 	public void refreshUI() {
-		//refresh ui after order sent
 		quantity.setText("");
 	}
 
@@ -85,7 +84,7 @@ public class ViewClass implements IView {
 		Product product = new Product(EBrand.valueOf(brand.getSelectedItem().toString()), 
 				EComputerType.valueOf(type.getSelectedItem().toString()), 10);
 		OrderItem item = new OrderItem(product , Integer.parseInt(quantity.getText()));
-		orderList.add(item);
+		orderList.add(item); //null pointer exception?????????????
 	}
 	
 	public void submit() {
