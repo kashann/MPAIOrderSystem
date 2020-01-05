@@ -1,40 +1,42 @@
 package mvp.view;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import mvp.model.Angajat;
+import mvp.model.EBrand;
 
 public class ViewClass implements IView {
-	public JTextField tf1, tf2;
-	public JButton btn;
-	public JLabel label1;
+	public JComboBox<EBrand> brand;
+	public JComboBox<String> specs;
+	public JTextField quantity;
+	public JButton addProduct;
+	public JButton btnSubmit;
 	
 	public ViewClass() {
-		/*JFrame f = new JFrame("Date Angajat");
-		f.getContentPane().setLayout(new FlowLayout());
-		tf1 = new JTextField();
-		tf2 = new JTextField("New Salary");
-		btn = new JButton("Modify salary");
-		tf1.setPreferredSize(new Dimension(60,20));
-		tf1.setHorizontalAlignment(SwingConstants.CENTER);
-		tf1.setEditable(false);
-		tf2.setToolTipText("New Salary");
-		label1 = new JLabel();
-		f.getContentPane().add(label1);
-		f.getContentPane().add(tf1);
-		f.getContentPane().add(tf2);
-		f.getContentPane().add(btn);
+		JFrame f = new JFrame("Online Order System");
+		f.getContentPane().setLayout(new GridLayout(1, 5));
+		f.setPreferredSize(new Dimension(500, 200));
+		brand = new JComboBox<EBrand>();
+		specs = new JComboBox<String>();
+		quantity = new JTextField();
+		addProduct = new JButton("Add Product");
+		btnSubmit = new JButton("Submit Order");
+		f.getContentPane().add(brand);
+		f.getContentPane().add(specs);
+		f.getContentPane().add(quantity);
+		f.getContentPane().add(addProduct);
+		f.getContentPane().add(btnSubmit);
 		
 		f.setMinimumSize(new Dimension(350, 100));
 		f.pack();
-		f.setVisible(true);*/
+		f.setVisible(true);
 	}
 
 	@Override
