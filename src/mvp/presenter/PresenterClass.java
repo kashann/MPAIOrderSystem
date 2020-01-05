@@ -37,8 +37,13 @@ public class PresenterClass {
 		view.btnSubmit.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//angajat.setSalary(Integer.parseInt(view.tf2.getText()));
-				//view.refreshUI(angajat);
+				view.refreshUI();
+			}
+		});
+		view.addProduct.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				view.addProduct();
 			}
 		});
 	}
