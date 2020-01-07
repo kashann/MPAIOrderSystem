@@ -9,6 +9,7 @@ import mvp.model.User;
 import mvp.model.strategy.PaymentStrategy;
 
 public class OrderBuilder {
+	private int id;
 	private User client;
 	private ArrayList<OrderItem> orderList;
 	private PaymentStrategy paymentStrategy;
@@ -33,7 +34,7 @@ public class OrderBuilder {
 	}
 	
 	public Order getOrder() {
-		Order order = new Order(client, orderList, paymentStrategy);
+		Order order = new Order(id, client, orderList, paymentStrategy);
 		return order;
 	}
 }

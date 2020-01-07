@@ -1,5 +1,5 @@
 package mvp.model;
 
 public enum EDelivery {
-	HOME_DELIVERY, PICKUP_POINT, STORE_PICKUP;
+	HOME_DELIVERY, STORE_PICKUP;
 }

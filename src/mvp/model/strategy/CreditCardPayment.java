@@ -13,7 +13,7 @@ public class CreditCardPayment implements PaymentStrategy {
 	private String expiringMonth;
 	private String expiringYear;
 	private String cvv;
-	private CreditCard card;
+	private CreditCard card; //la ce foloseste asta?
 	
 	private final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
 
