@@ -6,7 +6,7 @@ public class AsusAllInOn implements AllInOne {
 
 	@Override
 	public void printDescription() {
-		System.out.println("Asus laptop with serial number "+ this.hashCode());
+		System.out.println("Asus laptop with serial number " + this.hashCode());
 	}
 
 }

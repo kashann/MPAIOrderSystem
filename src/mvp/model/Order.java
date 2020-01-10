@@ -49,4 +49,15 @@ public class Order {
 		}
 		return val;
 	}
+
+	@Override
+	public String toString() {
+		String str = "Order #" + id + ", made by " + client.getName() + " (" + client.getEmail() + "), containing:\n";
+		for(int i = 0; i < orderList.size(); i++) {
+			str += orderList.get(i) + "\n";
+		}
+		return str;
+	}
+	
+	
 }

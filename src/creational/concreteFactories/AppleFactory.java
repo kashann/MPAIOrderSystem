@@ -9,21 +9,16 @@ import creational.concreteObjects.AppleDesktop;
 import creational.concreteObjects.AppleLaptop;
 
 public class AppleFactory implements Factory{
-
-	 private static AppleFactory instance; 
+	 private static AppleFactory instance;
+	 
+	 private AppleFactory()  {}
 	  
-	  private AppleFactory()  {}
-	  
-	  synchronized public static AppleFactory getInstance()  
-	  { 
-	    if (instance == null)  
-	    {
-	    	instance = new AppleFactory(); 
-	    } 
-	    return instance; 
-	  } 
-	
-	
+	 synchronized public static AppleFactory getInstance() { 
+		if (instance == null) {
+			instance = new AppleFactory(); 
+		} 
+		return instance; 
+	 } 
 	
 	@Override
 	public Laptop createLaptop() {
@@ -39,5 +34,4 @@ public class AppleFactory implements Factory{
 	public AllInOne createAllInOne() {
 		return new AppleAllInOn();
 	}
-
 }

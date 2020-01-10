@@ -272,12 +272,13 @@ public class ViewClass {
 	}
 	
 	public void sendOrder() {
-		paymentStrategy.getPaymentData(user);
-		Order sentOrder = new OrderBuilder().from(user).setOrderList(orderList).setOrderId(id).paymentAs(paymentStrategy).getOrder();
-		paymentStrategy.pay(sentOrder.getOrderValue());
-		System.out.println(sentOrder.toString());
 		try {
+			paymentStrategy.getPaymentData(user);
+			Thread.sleep(500);
+			Order sentOrder = new OrderBuilder().from(user).setOrderList(orderList).setOrderId(id).paymentAs(paymentStrategy).getOrder();
+			paymentStrategy.pay(sentOrder.getOrderValue());
 			Thread.sleep(1000);
+			System.out.println(sentOrder.toString());
 			checkout.dispose();
 			orderList.clear();
 			order.setText("");

@@ -9,19 +9,16 @@ import creational.concreteObjects.AsusDesktop;
 import creational.concreteObjects.AsusLaptop;
 
 public class AsusFactory implements Factory{
-
 	 private static AsusFactory instance; 
+	 
+	 private AsusFactory() {};
 	  
-	  private AsusFactory() {};
-	  
-	  synchronized public static AsusFactory getInstance()  
-	  { 
-	    if (instance == null)  
-	    { 
-	      instance = new AsusFactory(); 
+	 synchronized public static AsusFactory getInstance() { 
+	    if (instance == null) { 
+	    	instance = new AsusFactory(); 
 	    } 
 	    return instance; 
-	  } 
+	 } 
 	
 	@Override
 	public Laptop createLaptop() {
@@ -37,5 +34,4 @@ public class AsusFactory implements Factory{
 	public AllInOne createAllInOne() {
 		return new AsusAllInOn();
 	}
-
 }

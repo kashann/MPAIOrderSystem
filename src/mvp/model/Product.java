@@ -9,7 +9,7 @@ public class Product {
 		super();
 		this.brand = brand;
 		this.type = type;
-		this.price = price;
+		this.price = round(price, 2);
 	}
 
 	public Product() {}
@@ -35,6 +35,16 @@ public class Product {
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.price = round(price, 2);
+	}
+	
+	public static double round(double value, int places) {
+	    if (places < 0) 
+	    	throw new IllegalArgumentException();
+
+	    long factor = (long) Math.pow(10, places);
+	    value = value * factor;
+	    long tmp = Math.round(value);
+	    return (double) tmp / factor;
 	}
 }

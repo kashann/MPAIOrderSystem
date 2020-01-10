@@ -9,19 +9,16 @@ import creational.concreteObjects.DellDesktop;
 import creational.concreteObjects.DellLaptop;
 
 public class DellFactory implements Factory{
-
 	 private static DellFactory instance; 
 	  
-	  private DellFactory() {};
+	 private DellFactory() {};
 	  
-	  synchronized public static DellFactory getInstance()  
-	  { 
-	    if (instance == null)  
-	    { 
-	      instance = new DellFactory(); 
+	 synchronized public static DellFactory getInstance() { 
+	    if (instance == null) { 
+	    	instance = new DellFactory(); 
 	    } 
 	    return instance; 
-	  } 
+	 } 
 	
 	@Override
 	public Laptop createLaptop() {
@@ -37,5 +34,4 @@ public class DellFactory implements Factory{
 	public AllInOne createAllInOne() {
 		return new DellAllInOn();
 	}
-
 }

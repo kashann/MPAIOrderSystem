@@ -52,9 +52,8 @@ public class PresenterClass {
 				Product product = new ProductBuilder()
 					.buildProduct(EComputerType.valueOf(view.type.getSelectedItem().toString()))
 					.setProductBrand(EBrand.valueOf(view.brand.getSelectedItem().toString()))
-					.setProductPrice(1000)
+					.setProductPrice(Math.random() * (10000 - 1234) + 1234)
 					.getFinalProduct();
-
 
 				OrderItem item = new OrderItem(product , Integer.parseInt(view.quantity.getText()));
 				view.orderList.add(item);

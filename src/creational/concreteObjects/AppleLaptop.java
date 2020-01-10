@@ -6,6 +6,6 @@ public class AppleLaptop implements Laptop {
 
 	@Override
 	public void printDescription() {
-		System.out.println("Apple laptop with serial number "+ this.hashCode());
+		System.out.println("Apple laptop with serial number " + this.hashCode());
 	}
 }

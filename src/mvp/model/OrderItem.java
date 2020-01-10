@@ -28,8 +28,6 @@ public class OrderItem {
 
 	@Override
 	public String toString() {
-		return quantity + " X - " + product.getBrand() + " " + product.getType();
+		return quantity + " X - " + product.getBrand() + " " + product.getType() + " (" + product.getPrice() + " EUR)";
 	}
-	
-	
 }

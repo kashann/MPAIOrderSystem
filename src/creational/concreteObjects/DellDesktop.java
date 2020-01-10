@@ -6,7 +6,7 @@ public class DellDesktop implements Desktop {
 
 	@Override
 	public void printDescription() {
-		System.out.println("Dell desktop with serial number "+ this.hashCode());
+		System.out.println("Dell desktop with serial number " + this.hashCode());
 	}
 
 }
