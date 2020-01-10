@@ -12,6 +12,7 @@ import mvp.model.EPayment;
 import mvp.model.Order;
 import mvp.model.OrderItem;
 import mvp.model.Product;
+import mvp.model.ProductBuilder;
 import mvp.view.ViewClass;
 
 public class PresenterClass {
@@ -47,8 +48,14 @@ public class PresenterClass {
 				if(view.quantity.getText().isEmpty())
 					return;
 				view.order.append(view.quantity.getText() + "X - " + view.brand.getSelectedItem() + " " + view.type.getSelectedItem() + "\n");
-				Product product = new Product(EBrand.valueOf(view.brand.getSelectedItem().toString()), 
-						EComputerType.valueOf(view.type.getSelectedItem().toString()), 10);
+
+				Product product = new ProductBuilder()
+					.buildProduct(EComputerType.valueOf(view.type.getSelectedItem().toString()))
+					.setProductBrand(EBrand.valueOf(view.brand.getSelectedItem().toString()))
+					.setProductPrice(1000)
+					.getFinalProduct();
+
+
 				OrderItem item = new OrderItem(product , Integer.parseInt(view.quantity.getText()));
 				view.orderList.add(item);
 				view.quantity.setText("1");
