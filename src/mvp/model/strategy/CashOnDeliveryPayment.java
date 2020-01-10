@@ -1,43 +1,31 @@
 package mvp.model.strategy;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import mvp.model.User;
 
 public class CashOnDeliveryPayment implements PaymentStrategy {
-	
-    private String email;
-    private String password;
-    private final BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
+    private User user;
 
 	@Override
 	public Boolean pay(Double payAmmount) {
-		System.out.println("Paying " + String.valueOf(payAmmount) + " with CASH ON DELIVERY METHOD");
+		System.out.println("Paying " + payAmmount + " EUR with CASH ON DELIVERY METHOD");
 		return true;
 	}
 
 	@Override
-	public void getPaymentData() {
-        try {
-    		System.out.print("Enter the user's email: ");
-			email = READER.readLine();
-	        System.out.print("Enter the password: ");
-	        password = READER.readLine();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void getPaymentData(User user) {
+		this.user = user;
 
         if (verify()) {
-            System.out.println("Data verification has been successful.");
+            System.out.println("Waiting for Cash on delivery...");
         } else {
-            System.out.println("Wrong email or password!");
+            System.out.println("Wrong credentials!");
         }
 	}
 	
 	 @Override
 	 public boolean verify() {
-	        return email.length() > 0 && password.length() > 0;
+		 boolean condition = user.getEmail().length() > 0 && String.valueOf(user.getPhoneNumber()).length() == 9;
+		 return condition;
 	 }
 
 }

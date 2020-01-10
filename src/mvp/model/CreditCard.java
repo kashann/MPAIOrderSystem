@@ -20,7 +20,7 @@ public class CreditCard {
 		if(expiryMonth >= 1 && expiryMonth <= 12)
 			this.expiryMonth = expiryMonth;
 		else throw new IllegalArgumentException();
-		if(expiryYear >= Calendar.getInstance().get(Calendar.YEAR)%100 && String.valueOf(expiryYear).length() == 2)
+		if(expiryYear >= Calendar.getInstance().get(Calendar.YEAR) % 100 && String.valueOf(expiryYear).length() == 2)
 			this.expiryYear = expiryYear;
 		else throw new IllegalArgumentException();
 		if(String.valueOf(cvv).length() == 3)

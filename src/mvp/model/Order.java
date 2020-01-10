@@ -41,7 +41,12 @@ public class Order {
 	public PaymentStrategy getPaymentStrategy() {
 		return paymentStrategy;
 	}
-//	public void processOrder(PaymentStrategy strategy) {
-//		strategy.getPaymentData();
-//	}
+	
+	public double getOrderValue() {
+		double val = 0;
+		for(int i = 0; i < orderList.size(); i++) {
+			val += orderList.get(i).getProduct().getPrice() * orderList.get(i).getQuantity();
+		}
+		return val;
+	}
 }

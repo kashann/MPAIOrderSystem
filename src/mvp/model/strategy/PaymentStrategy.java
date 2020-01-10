@@ -1,9 +1,9 @@
 package mvp.model.strategy;
 
-public interface PaymentStrategy {
+import mvp.model.User;
 
-    Boolean pay(Double payAmmount);
-    void getPaymentData();
-    boolean verify();
-	
+public interface PaymentStrategy {
+    public Boolean pay(Double payAmmount);
+    public void getPaymentData(User user);
+    public boolean verify();
 }

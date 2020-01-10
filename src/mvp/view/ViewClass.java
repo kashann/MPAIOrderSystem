@@ -26,9 +26,15 @@ import mvp.model.EBrand;
 import mvp.model.EComputerType;
 import mvp.model.EDelivery;
 import mvp.model.EPayment;
+import mvp.model.Order;
 import mvp.model.OrderItem;
 import mvp.model.Product;
 import mvp.model.User;
+import mvp.model.order_builder.OrderBuilder;
+import mvp.model.strategy.BankTransferStrategy;
+import mvp.model.strategy.CashOnDeliveryPayment;
+import mvp.model.strategy.CreditCardPayment;
+import mvp.model.strategy.PaymentStrategy;
 
 public class ViewClass {
 	public JLabel brandLabel, typeLabel, quantityLabel;
@@ -46,10 +52,11 @@ public class ViewClass {
 	public ArrayList<OrderItem> orderList = new ArrayList<OrderItem>();
 	public User user;
 	public int id;
-	NumberFormat format;
+	private NumberFormat format;
+	private PaymentStrategy paymentStrategy;
 	
 	public ViewClass() {
-		user = new User("John", "Doe", "Piata Romana Nr. 6, Room 1234, Bucharest", "Str. Caderea Bastiliei Nr. 2-10, Room 0123, Bucharest",
+		user = new User("John", "Doe", "johndoe@gmail.com", 721234567, "Piata Romana Nr. 6, Room 1234, Bucharest", "Str. Caderea Bastiliei Nr. 2-10, Room 0123, Bucharest",
 				new CreditCard(1234567890123456l, "John Doe", 10, 22, 987));
 		JPanel productArea = new JPanel();
 		brandLabel = new JLabel("Brand");
@@ -112,11 +119,13 @@ public class ViewClass {
 		JPanel paymentPanel = new JPanel();
 		paymentPanel.setLayout(new BoxLayout(paymentPanel, BoxLayout.Y_AXIS));
         if(payment.getSelectedItem() == EPayment.CASH_ON_DELIVERY) {
+        	paymentStrategy = new CashOnDeliveryPayment();
     		JLabel cod = new JLabel("You will pay with CASH or CARD upon delivery.");
         	cod.setAlignmentX(Component.CENTER_ALIGNMENT);
         	paymentPanel.add(cod);
         }
         else if(payment.getSelectedItem() == EPayment.CREDIT_CARD) {
+        	paymentStrategy = new CreditCardPayment();
         	JPanel cardPanel1 = new JPanel();
         	cardPanel1.setLayout(new BoxLayout(cardPanel1, BoxLayout.X_AXIS));
         	JLabel cardNumber = new JLabel("Card Number    ");
@@ -143,6 +152,7 @@ public class ViewClass {
         	JLabel cardExpiry = new JLabel("Expiry Date Month/Year    ");
         	String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
         	JComboBox<String> month = new JComboBox<String>(months);
+        	month.setSelectedIndex(user.getCard().getExpiryMonth() - 1);
         	int yearsToShow = 20;
         	ArrayList<String> years = new ArrayList<String>();
         	int currentYear = Calendar.getInstance().get(Calendar.YEAR)%100;
@@ -150,6 +160,10 @@ public class ViewClass {
         		years.add(i + "");
         	String[] yearsStrings = new String[years.size()];
         	JComboBox<String> year = new JComboBox<String>(years.toArray(yearsStrings));
+        	for(int i = 0; i < yearsStrings.length; i++) {
+        		if(Integer.parseInt(yearsStrings[i]) == user.getCard().getExpiryYear())
+        			year.setSelectedIndex(i);        		
+        	}
         	cardPanel3.add(cardExpiry);
         	cardPanel3.add(month);
         	cardPanel3.add(year);
@@ -174,6 +188,7 @@ public class ViewClass {
         	paymentPanel.add(cardPanel4);
         }
     	else if(payment.getSelectedItem() == EPayment.BANK_TRANSFER) {
+    		paymentStrategy = new BankTransferStrategy();
     		JLabel paymentInstruction = new JLabel("Please make the transfer to the following bank account:");
     		JLabel companyInfo = new JLabel("SC Gang of Four SRL (RO12345678 - J40/12345/2020)");
     		JLabel hqInfo = new JLabel("HQ: Calea Dorobanți 15-17, București 010552");
@@ -256,15 +271,13 @@ public class ViewClass {
 		checkout.setVisible(true);
 	}
 	
-	public void sendOrder() {		
-		//build order
-		//order.setId(id);
-		//send order?
-		System.out.println("Order sent:");
-		for(int i = 0; i < orderList.size(); i++)
-			System.out.println(orderList.get(i).toString());
+	public void sendOrder() {
+		paymentStrategy.getPaymentData(user);
+		Order sentOrder = new OrderBuilder().from(user).setOrderList(orderList).setOrderId(id).paymentAs(paymentStrategy).getOrder();
+		paymentStrategy.pay(sentOrder.getOrderValue());
+		System.out.println(sentOrder.toString());
 		try {
-			Thread.sleep(1000); //maybe less
+			Thread.sleep(1000);
 			checkout.dispose();
 			orderList.clear();
 			order.setText("");

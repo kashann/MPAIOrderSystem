@@ -28,6 +28,16 @@ public class OrderBuilder {
 		return this;
 	}
 	
+	public OrderBuilder setOrderList(ArrayList<OrderItem> orderList) {
+		this.orderList = orderList;
+		return this;
+	}
+	
+	public OrderBuilder setOrderId(int id) {
+		this.id = id;
+		return this;
+	}
+	
 	public OrderBuilder paymentAs(PaymentStrategy paymentStrategy) {
 		this.paymentStrategy = paymentStrategy;
 		return this;
